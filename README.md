@@ -1,18 +1,21 @@
-# Salesforce DX Project: Next Steps
+# Тестовое задание для Syntegrico
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Задание В
+1.	Создай кастомный объект Task__c с полями:
+–	Subject__c (Text)
+–	Done__c (Checkbox, default = false)
+–	DueDate__c (Date)
+2.	Напиши Apex-класс TaskController:
+–	getTasks() — получить список задач
+–	markDone(Id taskId) — отметить задачу как выполненную
+3.	Создай LWC компонент taskList:
+–	Отобрази список задач в HTML-таблице (используй <table>, не lightning-datatable)
+–	Добавь кнопку «Выполнено» рядом с каждой задачей
+–	При нажатии кнопки вызови метод markDone из контроллера и обнови список
 
-## How Do You Plan to Deploy Your Changes?
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+## Структура
+Классы: .\force-app\main\default\classes
+LWC: .\lwc\taskList
+Объект задачи: .\objects\Task__c
 
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
