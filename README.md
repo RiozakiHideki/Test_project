@@ -21,3 +21,6 @@
 - **Классы:** `./force-app/main/default/classes`
 - **LWC:** `./force-app/main/default/lwc/taskList`
 - **Объект задачи:** `./force-app/main/default/objects/Task__c`
+
+## Тесты
+![Тесты](./tests.jpg)
