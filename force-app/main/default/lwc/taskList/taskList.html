@@ -1,0 +1,71 @@
+<template>
+    <lightning-card title="My Tasks" icon-name="standard:task">
+        <div class="slds-m-around_medium">
+            <!-- Ошибка загрузки -->
+            <template if:true={error}>
+                <div class="slds-text-color_error">Error loading tasks: {error}</div>
+            </template>
+
+            <!-- Таблица задач -->
+            <template if:true={tasks}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Subject">Subject</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Due Date">Due Date</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Status">Status</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={tasks} for:item="task">
+                            <tr key={task.Id}>
+                                <td data-label="Subject">
+                                    <div class="slds-truncate" title={task.Subject__c}>{task.Subject__c}</div>
+                                </td>
+                                <td data-label="Due Date">
+                                    <div class="slds-truncate" title={task.DueDate__c}>{task.DueDate__c}</div>
+                                </td>
+                                <td data-label="Status">
+                                    <div class="slds-truncate">
+                                        <!-- Визуальная индикация статуса -->
+                                        <span if:true={task.Done__c} class="slds-badge slds-theme_success">Done</span>
+                                        <span if:false={task.Done__c} class="slds-badge slds-theme_warning">Open</span>
+                                    </div>
+                                </td>
+                                <td data-label="Action">
+                                    <!-- Кнопка выполняется только если задача еще не сделана -->
+                                    <template if:false={task.Done__c}>
+                                        <lightning-button 
+                                            label="Done" 
+                                            variant="brand-outline" 
+                                            size="small"
+                                            data-id={task.Id}
+                                            onclick={handleMarkDone}>
+                                        </lightning-button>
+                                    </template>
+                                    <template if:true={task.Done__c}>
+                                        <span class="slds-text-body_small slds-text-color_weak">Completed</span>
+                                    </template>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+            
+            <!-- Если задач нет -->
+            <template if:false={tasks}>
+                <div class="slds-text-body_regular">No tasks found.</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
